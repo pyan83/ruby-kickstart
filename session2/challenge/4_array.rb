@@ -7,3 +7,8 @@
 # get_squares [25, 4, 9, 6, 50, 16, 5] # => [4, 5]
 
 # This time you will have to define the method, it's called: get_squares
+def get_squares(arr)
+  squared = []
+  squared = arr.select {|x| arr.include? x ** 2}
+  return squared.sort
+end

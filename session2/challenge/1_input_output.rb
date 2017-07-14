@@ -9,13 +9,9 @@
 
 def sum_difference_product
   # your code goes here
-  puts "Enter a number"
-  a = gets.chomp.to_i
-  puts "Enter another number"
-  b = gets.chomp.to_i
-  puts a + b
-  puts a - b
-  puts a * b
+  puts "Enter two numbers seperated by space"
+  arr = gets.split.map(&:to_i)
+  puts arr[0] + arr[1]
+  puts arr[0] - arr[1]
+  puts arr[0] * arr[1]
 end
-
-sum_difference_product
