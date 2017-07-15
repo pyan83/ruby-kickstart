@@ -9,8 +9,7 @@
 # alternate_words("Can't we all get along?")      # => ["Can't", "all", "along"]
 # alternate_words("Elementary, my dear Watson!")  # => ["Elementary", "dear"]
 
-def alternate_words(words)
-  words.tr("^A-Za-z' ", "").split.delete_if {|x| x == ""}.select.with_index {|x, i| i.even?}
-end
 
-#"hello".tr("^aeiou'", "'")
+def alternate_words(words)
+words.split.map {|x| x.gsub(/[^\‘\’'0-9A-Za-z]/, "")}.delete_if {|x| x == ""}.select.with_index {|x, i| i.even?}
+end
