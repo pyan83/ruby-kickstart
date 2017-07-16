@@ -5,3 +5,11 @@
 # There will be no punctuation in the strings.
 #
 # first_pos "The dog and the cat and the cow" # => {"The" => 0, "dog" => 1, "and" => 2, "the" => 3, "cat" => 4, "cow" => 7}
+
+def first_pos(str)
+hashed = {}
+str.gsub(/[^ 0-9A-Za-z]/, "").split.map.with_index do |word, index|
+  hashed[word] = index if hashed[word] == nil
+  end
+  return hashed
+end
