@@ -18,15 +18,43 @@
 # if the parameter is greater than 99, set the number of beer bottles to 99
 # Then make a public method called print_song that outputs all stanzas from the number of bottles of beer down to zero.
 # Add any additional methods you find helpful.
-
 class BeerSong
+  attr_accessor :beers
 
-  attr_accessor 'num'
-  units = [[1],["one"]]
-
-  teens = %w(ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen)
-  tens = %w(twenty thirty forty fifty sixty seventy eighty ninety)
-
-  def initialize (num)
-    @num = num
+  def initialize(beers)
+    beers = 0  if beers < 0
+    beers = 99 if beers > 99
+    self.beers = beers
   end
+
+  def print_song
+    beers.downto 1 do |i|
+      print_lines i
+    end
+  end
+
+  def print_lines(n)
+    if n.zero?
+      String.new
+    else
+      puts "#{convert n} #{plural n} of beer on the wall,"        ,
+           "#{convert n} #{plural n} of beer,"                    ,
+           "Take one down, pass it around,"                         ,
+           "#{convert n - 1} #{plural n-1} of beer on the wall."
+    end
+  end
+
+  def plural(n)
+    if n == 1 then 'bottle' else 'bottles' end
+  end
+
+  def convert(n)
+    if 0 <= n && n <= 19
+      %w(zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen)[n]
+    elsif n % 10 == 0
+      %w(zero ten twenty thirty forty fifty sixty seventy eighty ninety)[n/10]
+    else
+      "#{convert n/10*10}-#{convert n%10}".downcase
+    end.capitalize
+  end
+end
